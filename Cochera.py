@@ -149,7 +149,6 @@ def Start():
 
 #####Ejecucion del Programa Principal
 miCuchera=Cochera()
-print("Este programa lleva la gestion de una cochera")
 Pintar()
 Start()
 
