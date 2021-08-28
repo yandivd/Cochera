@@ -41,21 +41,14 @@ class Cochera():
         archivo.close()
         del(archivo)
 
-####En este Metodo hay un error donde si pongo un indice q no existe me vacia el archivo
     def EliminarCoche(self,indice):
         archivo=open("fileAutos","wb")
-        listaAux=[]
-        try:
-            autoEliminado=self.listaAutos[indice]
-            self.listaAutos.pop(indice)
-            #listaAux=self.listaAutos
-            pickle.dump(self.listaAutos, archivo)
-            print("Auto ",autoEliminado.numChapa," eliminado")
-        except:
-            print("Indice no existe")
-        finally:
-            archivo.close()
-            del(archivo)
+        autoEliminado=self.listaAutos[indice]
+        self.listaAutos.pop(indice)
+        pickle.dump(self.listaAutos, archivo)
+        print("Auto ",autoEliminado.numChapa," eliminado")
+        archivo.close()
+        del(archivo)
 
     def AgregarAutoAlFichero(self):
         archivo=open("fileAutos","wb")
@@ -123,14 +116,19 @@ def Start():
     
     elif option=='3':
         aEliminar=int(input("Inserte el numero del auto a eliminar: "))
-        confirm=input("seguro que desea eliminar este vehiculo?(y/n) ")
-        if confirm=='y':
-            miCuchera.EliminarCoche(aEliminar-1)
-            Mostrar()
-            confirm='n'
-            Start()
+        indiceValido=aEliminar
+        if indiceValido<=int(len(miCuchera.listaAutos)):
+            confirm=input("seguro que desea eliminar este vehiculo?(y/n) ")
+            if confirm=='y':
+                miCuchera.EliminarCoche(aEliminar-1)
+                Mostrar()
+                confirm='n'
+                Start()
+            else:
+                print("Operacion Cancelada")
+                Start()
         else:
-            print("Operacion Cancelada")
+            print("Ese indice no es valido")
             Start()
 
     elif option=='4':
