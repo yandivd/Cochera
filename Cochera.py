@@ -41,14 +41,15 @@ class Cochera():
         archivo.close()
         del(archivo)
 
+####En este Metodo hay un error donde si pongo un indice q no existe me vacia el archivo
     def EliminarCoche(self,indice):
         archivo=open("fileAutos","wb")
         listaAux=[]
         try:
             autoEliminado=self.listaAutos[indice]
             self.listaAutos.pop(indice)
-            listaAux=self.listaAutos
-            pickle.dump(listaAux, archivo)
+            #listaAux=self.listaAutos
+            pickle.dump(self.listaAutos, archivo)
             print("Auto ",autoEliminado.numChapa," eliminado")
         except:
             print("Indice no existe")
