@@ -1,7 +1,6 @@
 from tkinter import *
 from cochera import *
 
-
 raiz=Tk()
 raiz.geometry("600x450")
 raiz.title("GaragApp")
@@ -30,7 +29,7 @@ botonClean.grid(row=5, column=0, pady=5)
 botonExit=Button(miFrame, text="Salir",width=12, height=2)
 botonExit.grid(row=6, column=0, pady=5)
 
-#Label que deberia mostrar la informacion de los autos almacenados
+#Label que deberia mostrar la informacion de los autos
 labelListado=Label(miFrame, height=12, width=30)
 labelListado.grid(row=2, column=1,rowspan=4)
 labelListado.config(background="white")
