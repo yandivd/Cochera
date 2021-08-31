@@ -1,5 +1,7 @@
 from tkinter import *
 from cochera import *
+
+
 raiz=Tk()
 raiz.geometry("600x450")
 raiz.title("GaragApp")
