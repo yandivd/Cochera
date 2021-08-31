@@ -1,4 +1,5 @@
 from tkinter import *
+from cochera import *
 raiz=Tk()
 raiz.geometry("600x450")
 raiz.title("GaragApp")
@@ -12,7 +13,7 @@ labelComentario=Label(miFrame,text="Este software gestiona todos los vehiculos q
 labelComentario.grid(row=1, column=0, padx=5, columnspan=3)
 labelComentario.config(justify="center")
 
-botonMostrar=Button(miFrame, text="Mostrar Autos", width=12, height=2)
+botonMostrar=Button(miFrame, text="Mostrar Autos", width=12, height=2, command=miCuchera.MostrarAutos)
 botonMostrar.grid(row=2, column=0, pady=5)
 
 botonAdd=Button(miFrame, text="Agregar Auto", width=12, height=2)

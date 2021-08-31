@@ -1,4 +1,5 @@
 import pickle
+from cocheraGUI import *
 class Autos():
     def __init__(self,marca,modelo,color,numChapa,velMax):
         self.marca=marca
@@ -59,6 +60,7 @@ class Cochera():
     def MostrarAutos(self):
         a=1
         for i in self.listaAutos:
+            #labelListado.config(text=1)
             print("| ",a, i)
             a+=1
 
@@ -148,7 +150,7 @@ def Start():
 
 #####Ejecucion del Programa Principal
 miCuchera=Cochera()
-Pintar()
-Start()
+#Pintar()
+#Start()
 
 
