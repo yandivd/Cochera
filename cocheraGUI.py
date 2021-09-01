@@ -36,8 +36,11 @@ class Cochera():
             #a+=1        
     
     def MenuAgregarAuto(self):
-        raizAgAuto=Tk()
-        raizAgAuto.mainloop()
+        raizAgAuto=Toplevel(raiz)
+        raizAgAuto.title("Agregar Auto")
+        raizAgAuto.focus_set()
+        raizAgAuto.grab_set()
+        raizAgAuto.transient(master=raiz)
 
     def AgregarAuto(self,auto):
         self.listaAutos.append(auto)
