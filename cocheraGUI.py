@@ -34,13 +34,64 @@ class Cochera():
             listaDeLabel.set(listaDeLabel.get()+str(i)+"\n")
             #print("| ",a, i)
             #a+=1        
+
+    def CrearAuto(self, marca, modelo, color, chapa, velMax):
+        autoAux=Auto(marca, modelo, color, chapa, velMax)
+        self.AgregarAuto(autoAux)
+
     
     def MenuAgregarAuto(self):
         raizAgAuto=Toplevel(raiz)
+        raizAgAuto.geometry("600x400")
         raizAgAuto.title("Agregar Auto")
         raizAgAuto.focus_set()
         raizAgAuto.grab_set()
         raizAgAuto.transient(master=raiz)
+
+        ##########Formulario#####################
+        Label(raizAgAuto,text="Garagcom", fg="red", font=("Comics Sans MS",20)).grid(row=0, column=0, pady=20, columnspan=3)
+        Label(raizAgAuto, text="Inserte los datos del auto que desea agregar: ").grid(row=1, column=1, padx=5, pady=10, columnspan=3)
+        ###Marca###
+        labelMarca=Label(raizAgAuto, text="Marca:")
+        labelMarca.grid(row=3, column=0, padx=20, pady=10, sticky="e")
+        marca=StringVar()
+        entryMarca=Entry(raizAgAuto, textvariable=marca)
+        entryMarca.grid(row=3, column=1, padx=2, pady=10, sticky="w")
+        ###Modelo###
+        labelModelo=Label(raizAgAuto, text="Modelo:")
+        labelModelo.grid(row=4, column=0, padx=20, pady=10, sticky="e")
+        modelo=StringVar()
+        entryModelo=Entry(raizAgAuto, textvariable=modelo)
+        entryModelo.grid(row=4, column=1, padx=2, pady=10, sticky="w")
+        ###Color###
+        labelColor=Label(raizAgAuto, text="Color:")
+        labelColor.grid(row=5, column=0, padx=20, pady=10, sticky="e")
+        color=StringVar()
+        entryColor=Entry(raizAgAuto, textvariable=color)
+        entryColor.grid(row=5, column=1, padx=2, pady=10, sticky="w")
+        ###Numero de chapa####
+        labelChapa=Label(raizAgAuto, text="Matricula:")
+        labelChapa.grid(row=6, column=0, padx=20, pady=10, sticky="e")
+        chapa=StringVar()
+        entryChapa=Entry(raizAgAuto, width=10, textvariable=chapa)
+        entryChapa.grid(row=6, column=1, padx=2, pady=10, sticky="w")
+        ###Velocidad Maxima####
+        labelVel=Label(raizAgAuto, text="Velocidad Max:")
+        labelVel.grid(row=7, column=0, padx=20, pady=10, sticky="e")
+        vel=StringVar()
+        entryVel=Entry(raizAgAuto, width=6, textvariable=vel)
+        entryVel.grid(row=7, column=1, padx=2, pady=10, sticky="w")
+
+        ###Boton Atras###
+        botonCancel=Button(raizAgAuto, text="Atras", width=6, command=raizAgAuto.destroy)
+        botonCancel.grid(row=8, column=0, padx=10, pady=10, sticky="w")
+        botonCancel.config(background="red")
+        ###Boton Aceptar###
+        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),raizAgAuto.destroy()])
+        botonAcept.grid(row=8, column=3, padx=10, pady=10)
+        botonAcept.config(justify="center")
+        botonAcept.config(background="green")
+
 
     def AgregarAuto(self,auto):
         self.listaAutos.append(auto)
@@ -102,7 +153,7 @@ botonDel.grid(row=4, column=0, pady=5)
 botonClean=Button(miFrame, text="Limpiar Datos", width=12, height=2)
 botonClean.grid(row=5, column=0, pady=5)
 
-botonExit=Button(miFrame, text="Salir",width=12, height=2)
+botonExit=Button(miFrame, text="Salir",width=12, height=2, command=raiz.destroy)
 botonExit.grid(row=6, column=0, pady=5)
 
 #Label que deberia mostrar la informacion de los autos
