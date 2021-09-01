@@ -100,7 +100,7 @@ botonExit.grid(row=6, column=0, pady=5)
 
 #Label que deberia mostrar la informacion de los autos
 listaDeLabel=StringVar()
-labelListado=Label(miFrame, height=12, width=30, textvar=listaDeLabel, sticky="n")
+labelListado=Label(miFrame, height=12, width=30, textvar=listaDeLabel)
 labelListado.grid(row=2, column=1,rowspan=4)
 labelListado.config(background="white")
 
