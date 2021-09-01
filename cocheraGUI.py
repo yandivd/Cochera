@@ -28,11 +28,11 @@ class Cochera():
             del(archivo)
     
     def MostrarAutos(self):
-        a=1
-        for i in self.listaAutos:
-            listaDeLabel.set(i)
-            print("| ",a, i)
-            a+=1        
+        #a=1
+        #for i in self.listaAutos:
+        listaDeLabel.set(self.listaAutos)
+        #    print("| ",a, i)
+        #    a+=1        
     
     def AgregarAuto(self,auto):
         self.listaAutos.append(auto)
