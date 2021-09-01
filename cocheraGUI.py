@@ -29,7 +29,12 @@ class Cochera():
             archivo.close()
             del(archivo)
     
+    def LimpiarTabla(self):
+        for row in tv.get_children():
+            tv.delete(row)
+    
     def MostrarAutos(self):
+        self.LimpiarTabla()
         a=0
         #listaDeLabel.set("")
         for i in self.listaAutos:
@@ -91,7 +96,7 @@ class Cochera():
         botonCancel.grid(row=8, column=0, padx=10, pady=10, sticky="w")
         botonCancel.config(background="red")
         ###Boton Aceptar###
-        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),miGarage.InfoAutoAgregado() ,raizAgAuto.destroy()])
+        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),miGarage.InfoAutoAgregado() ,miGarage.LimpiarTabla() ,raizAgAuto.destroy()])
         botonAcept.grid(row=8, column=3, padx=10, pady=10)
         botonAcept.config(justify="center")
         botonAcept.config(background="green")
@@ -118,7 +123,8 @@ class Cochera():
             pass
 
     def Vaciar(self):
-        listaDeLabel.set("")
+        #listaDeLabel.set("")
+        self.LimpiarTabla()
         listaVacia=[]
         archivo=open("archivoAutos","wb")
         pickle.dump(listaVacia, archivo)
