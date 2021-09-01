@@ -30,12 +30,14 @@ class Cochera():
             del(archivo)
     
     def MostrarAutos(self):
-        #a=1
-        listaDeLabel.set("")
+        a=0
+        #listaDeLabel.set("")
         for i in self.listaAutos:
-            listaDeLabel.set(listaDeLabel.get()+str(i)+"\n")
+            tv.insert(parent='', index=a, iid=a, text='', values=(a+1,i.marca,i.modelo, i.color, i.numChapa, i.velMax))
+            #listaDeLabel.set(listaDeLabel.get()+str(i)+"\n")
             #print("| ",a, i)
-            #a+=1        
+            a+=1   
+             
 
     def CrearAuto(self, marca, modelo, color, chapa, velMax):
         autoAux=Auto(marca, modelo, color, chapa, velMax)
@@ -180,15 +182,27 @@ tv=ttk.Treeview(miFrame, height=12)
 tv.grid(row=2, column=1, rowspan=4, padx=10, pady=10)
 
 #Definiendo las columnas
-tv['columns']=('ID','Marca', 'Modelo', 'Color', 'Matricula', 'Vel Max')
+tv['columns']=('ID', 'Marca', 'Modelo','Color', 'Matricula', 'VelMax')
 tv.column('#0', width=0, stretch=NO)
-tv.column('ID', anchor=CENTER, width=80)
+tv.column('ID', anchor=CENTER, width=20)
 tv.column('Marca', anchor=CENTER, width=80)
 tv.column('Modelo', anchor=CENTER, width=80)
 tv.column('Color', anchor=CENTER, width=80)
 tv.column('Matricula', anchor=CENTER, width=80)
-tv.column('Vel Max', anchor=CENTER, width=80)
+tv.column('VelMax', anchor=CENTER, width=80)
 
+#Nombrando las columnas
+tv.heading('#0', text='', anchor=CENTER)
+tv.heading('ID', text='ID', anchor=CENTER)
+tv.heading('Marca', text='Marca', anchor=CENTER)
+tv.heading('Modelo', text='Modelo', anchor=CENTER)
+tv.heading('Color', text='Color', anchor=CENTER)
+tv.heading('Matricula', text='Matricula', anchor=CENTER)
+tv.heading('VelMax', text='Vel Max', anchor=CENTER)
 
+# Configurando Barra de Scroll
+MiBarraDeScrolly = Scrollbar(miFrame,command=tv.yview)
+MiBarraDeScrolly.grid(row=5,column=2,sticky='nsew',pady=10)
+tv.config(yscrollcommand=MiBarraDeScrolly.set)
 
 raiz.mainloop()
