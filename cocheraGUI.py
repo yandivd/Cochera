@@ -30,6 +30,7 @@ class Cochera():
     def MostrarAutos(self):
         a=1
         for i in self.listaAutos:
+            listaDeLabel.set(i)
             print("| ",a, i)
             a+=1        
     
