@@ -29,10 +29,11 @@ class Cochera():
     
     def MostrarAutos(self):
         #a=1
-        #for i in self.listaAutos:
-        listaDeLabel.set(self.listaAutos)
-        #    print("| ",a, i)
-        #    a+=1        
+        listaDeLabel.set("")
+        for i in self.listaAutos:
+            listaDeLabel.set(listaDeLabel.get()+str(i)+"\n")
+            #print("| ",a, i)
+            #a+=1        
     
     def AgregarAuto(self,auto):
         self.listaAutos.append(auto)
@@ -99,7 +100,7 @@ botonExit.grid(row=6, column=0, pady=5)
 
 #Label que deberia mostrar la informacion de los autos
 listaDeLabel=StringVar()
-labelListado=Label(miFrame, height=12, width=30, textvar=listaDeLabel)
+labelListado=Label(miFrame, height=12, width=30, textvar=listaDeLabel, sticky="n")
 labelListado.grid(row=2, column=1,rowspan=4)
 labelListado.config(background="white")
 
