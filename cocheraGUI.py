@@ -51,7 +51,7 @@ class Cochera():
     
     def MenuAgregarAuto(self):
         raizAgAuto=Toplevel(raiz)
-        raizAgAuto.geometry("600x400")
+        raizAgAuto.geometry("500x400")
         raizAgAuto.title("Agregar Auto")
         raizAgAuto.focus_set()
         raizAgAuto.grab_set()
