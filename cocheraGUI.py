@@ -35,6 +35,10 @@ class Cochera():
             #print("| ",a, i)
             #a+=1        
     
+    def MenuAgregarAuto(self):
+        raizAgAuto=Tk()
+        raizAgAuto.mainloop()
+
     def AgregarAuto(self,auto):
         self.listaAutos.append(auto)
         self.AgregarAutoAlFichero()
@@ -86,7 +90,7 @@ labelComentario.config(justify="center")
 botonMostrar=Button(miFrame, text="Mostrar Autos", width=12, height=2, command=miGarage.MostrarAutos)
 botonMostrar.grid(row=2, column=0, pady=5)
 
-botonAdd=Button(miFrame, text="Agregar Auto", width=12, height=2)
+botonAdd=Button(miFrame, text="Agregar Auto", width=12, height=2, command=miGarage.MenuAgregarAuto)
 botonAdd.grid(row=3, column=0, pady=5)
 
 botonDel=Button(miFrame, text="Eliminar Auto", width=12, height=2)
