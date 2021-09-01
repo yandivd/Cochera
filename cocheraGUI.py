@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 import pickle
 
 class Auto():
@@ -141,7 +142,7 @@ miGarage=Cochera()
 
 #######interfaz grafica#####################
 raiz=Tk()
-raiz.geometry("600x450")
+raiz.geometry("700x500")
 raiz.title("GaragApp")
 
 miFrame=Frame(raiz,width="600", height="450")
@@ -169,9 +170,25 @@ botonExit=Button(miFrame, text="Salir",width=12, height=2, command=raiz.destroy)
 botonExit.grid(row=6, column=0, pady=5)
 
 #Label que deberia mostrar la informacion de los autos
-listaDeLabel=StringVar()
-labelListado=Label(miFrame, height=12, width=40, textvar=listaDeLabel)
-labelListado.grid(row=2, column=1,rowspan=4, padx=10, pady=10)
-labelListado.config(background="white")
+#listaDeLabel=StringVar()
+#labelListado=Label(miFrame, height=12, width=40, textvar=listaDeLabel)
+#labelListado.grid(row=2, column=1,rowspan=4, padx=10, pady=10)
+#labelListado.config(background="white")
+
+#Creando el treeview
+tv=ttk.Treeview(miFrame, height=12)
+tv.grid(row=2, column=1, rowspan=4, padx=10, pady=10)
+
+#Definiendo las columnas
+tv['columns']=('ID','Marca', 'Modelo', 'Color', 'Matricula', 'Vel Max')
+tv.column('#0', width=0, stretch=NO)
+tv.column('ID', anchor=CENTER, width=80)
+tv.column('Marca', anchor=CENTER, width=80)
+tv.column('Modelo', anchor=CENTER, width=80)
+tv.column('Color', anchor=CENTER, width=80)
+tv.column('Matricula', anchor=CENTER, width=80)
+tv.column('Vel Max', anchor=CENTER, width=80)
+
+
 
 raiz.mainloop()
