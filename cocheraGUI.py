@@ -66,8 +66,6 @@ class Cochera():
 
 #######Ejecucion###############
 miGarage=Cochera()
-auto1=Auto("Ferrar", "XRG", "rojo", "LIB029", "120")
-miGarage.AgregarAuto(auto1)
 
 #######interfaz grafica#####################
 raiz=Tk()
