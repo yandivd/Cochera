@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import pickle
 
 class Auto():
@@ -87,7 +88,7 @@ class Cochera():
         botonCancel.grid(row=8, column=0, padx=10, pady=10, sticky="w")
         botonCancel.config(background="red")
         ###Boton Aceptar###
-        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),raizAgAuto.destroy()])
+        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),miGarage.InfoAutoAgregado() ,raizAgAuto.destroy()])
         botonAcept.grid(row=8, column=3, padx=10, pady=10)
         botonAcept.config(justify="center")
         botonAcept.config(background="green")
@@ -102,6 +103,12 @@ class Cochera():
         pickle.dump(self.listaAutos, archivo)
         archivo.close()
         del(archivo)
+    
+    def InfoAutoAgregado(self):
+        messagebox.showinfo("Operacion realizada", "Auto agregado con exito")
+
+    def ConfirmacionVaciado(self):
+        pass
 
     def Vaciar(self):
         listaDeLabel.set("")
@@ -159,8 +166,8 @@ botonExit.grid(row=6, column=0, pady=5)
 
 #Label que deberia mostrar la informacion de los autos
 listaDeLabel=StringVar()
-labelListado=Label(miFrame, height=12, width=30, textvar=listaDeLabel)
-labelListado.grid(row=2, column=1,rowspan=4)
+labelListado=Label(miFrame, height=12, width=40, textvar=listaDeLabel)
+labelListado.grid(row=2, column=1,rowspan=4, padx=10, pady=10)
 labelListado.config(background="white")
 
 raiz.mainloop()
