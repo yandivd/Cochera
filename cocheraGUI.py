@@ -104,6 +104,7 @@ class Cochera():
         del(archivo)
 
     def Vaciar(self):
+        listaDeLabel.set("")
         listaVacia=[]
         archivo=open("archivoAutos","wb")
         pickle.dump(listaVacia, archivo)
@@ -150,7 +151,7 @@ botonAdd.grid(row=3, column=0, pady=5)
 botonDel=Button(miFrame, text="Eliminar Auto", width=12, height=2)
 botonDel.grid(row=4, column=0, pady=5)
 
-botonClean=Button(miFrame, text="Limpiar Datos", width=12, height=2)
+botonClean=Button(miFrame, text="Limpiar Datos", width=12, height=2, command=miGarage.Vaciar)
 botonClean.grid(row=5, column=0, pady=5)
 
 botonExit=Button(miFrame, text="Salir",width=12, height=2, command=raiz.destroy)
