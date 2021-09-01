@@ -59,7 +59,6 @@ class Cochera():
     def MostrarAutos(self):
         a=1
         for i in self.listaAutos:
-            informacionLabel.set(informacionLabel.get()+i)
             print("| ",a, i)
             a+=1
 
@@ -149,7 +148,7 @@ def Start():
 
 #####Ejecucion del Programa Principal
 miCuchera=Cochera()
-#Pintar()
-#Start()
+Pintar()
+Start()
 
 
