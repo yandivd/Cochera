@@ -54,7 +54,52 @@ class Cochera():
         autoAux=Auto(marca, modelo, color, chapa, velMax)
         self.AgregarAuto(autoAux)
 
+    def AgregarAuto(self,auto):
+        self.listaAutos.append(auto)
+        self.AgregarAutoAlFichero()
+
+    def AgregarAutoAlFichero(self):
+        archivo=open("archivoAutos","wb")
+        pickle.dump(self.listaAutos, archivo)
+        archivo.close()
+        del(archivo)
     
+    def InfoAutoAgregado(self):
+        messagebox.showinfo("Operacion realizada", "Auto agregado con exito")
+
+    def InfoAutoEliminado(self,autoelim):
+        messagebox.showinfo("Operacion realizada","Auto "+autoelim.numChapa+" marca "+autoelim.marca+" eliminado correctamente")
+
+    def ConfirmacionVaciado(self):
+        valor=messagebox.askquestion("Vaciar","Seguro desea vaiar todos los datos?")
+        if valor=="yes":
+            self.Vaciar()
+        else:
+            pass
+
+    def Vaciar(self):
+        #listaDeLabel.set("")
+        self.LimpiarTabla()
+        listaVacia=[]
+        archivo=open("archivoAutos","wb")
+        pickle.dump(listaVacia, archivo)
+        archivo.close()
+        del(archivo)
+        archivo=open("archivoAutos","rb")
+        self.listaAutos=pickle.load(archivo)
+        archivo.close()
+        del(archivo)
+
+    def EliminarCoche(self,indice):
+        archivo=open("archivoAutos","wb")
+        autoEliminado=self.listaAutos[indice]
+        self.listaAutos.pop(indice)
+        pickle.dump(self.listaAutos, archivo)
+        print("Auto ",autoEliminado.numChapa," eliminado")
+        archivo.close()
+        del(archivo)
+        self.eliminadoAux=autoEliminado
+
     def MenuAgregarAuto(self):
         raizAgAuto=Toplevel(raiz)
         raizAgAuto.geometry("500x400")
@@ -102,57 +147,10 @@ class Cochera():
         botonCancel.grid(row=8, column=0, padx=10, pady=10, sticky="w")
         botonCancel.config(background="red")
         ###Boton Aceptar###
-        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),miGarage.InfoAutoAgregado() ,miGarage.LimpiarTabla() ,raizAgAuto.destroy()])
+        botonAcept=Button(raizAgAuto, text="Aceptar", width=6, command=lambda: [miGarage.CrearAuto(marca.get(), modelo.get(), color.get(), chapa.get(), vel.get()),miGarage.InfoAutoAgregado() ,miGarage.MostrarAutos(),raizAgAuto.destroy()])
         botonAcept.grid(row=8, column=3, padx=10, pady=10)
         botonAcept.config(justify="center")
         botonAcept.config(background="green")
-
-
-    def AgregarAuto(self,auto):
-        self.listaAutos.append(auto)
-        self.AgregarAutoAlFichero()
-
-    def AgregarAutoAlFichero(self):
-        archivo=open("archivoAutos","wb")
-        pickle.dump(self.listaAutos, archivo)
-        archivo.close()
-        del(archivo)
-    
-    def InfoAutoAgregado(self):
-        messagebox.showinfo("Operacion realizada", "Auto agregado con exito")
-
-    def InfoAutoEliminado(self,autoelim):
-        messagebox.showinfo("Operacion realizada","Auto "+autoelim.numChapa+" marca "+autoelim.marca+" eliminado correctamente")
-
-    def ConfirmacionVaciado(self):
-        valor=messagebox.askquestion("Vaciar","Seguro desea vaiar todos los datos?")
-        if valor=="yes":
-            self.Vaciar()
-        else:
-            pass
-
-    def Vaciar(self):
-        #listaDeLabel.set("")
-        self.LimpiarTabla()
-        listaVacia=[]
-        archivo=open("archivoAutos","wb")
-        pickle.dump(listaVacia, archivo)
-        archivo.close()
-        del(archivo)
-        archivo=open("archivoAutos","rb")
-        self.listaAutos=pickle.load(archivo)
-        archivo.close()
-        del(archivo)
-
-    def EliminarCoche(self,indice):
-        archivo=open("archivoAutos","wb")
-        autoEliminado=self.listaAutos[indice]
-        self.listaAutos.pop(indice)
-        pickle.dump(self.listaAutos, archivo)
-        print("Auto ",autoEliminado.numChapa," eliminado")
-        archivo.close()
-        del(archivo)
-        self.eliminadoAux=autoEliminado
 
 
 #######Ejecucion###############
