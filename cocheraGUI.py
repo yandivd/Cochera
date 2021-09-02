@@ -16,6 +16,7 @@ class Auto():
 
 class Cochera():
     listaAutos=[]
+    eliminadoAux=""
 
     def __init__(self):
         archivo=open("archivoAutos","ab+")
@@ -43,6 +44,11 @@ class Cochera():
             #print("| ",a, i)
             a+=1   
              
+    def EliminarSeleccionado(self):
+        seleccionado=tv.selection()[0]
+        self.EliminarCoche(tv.index(seleccionado))
+        tv.delete(seleccionado)
+        self.InfoAutoEliminado(self.eliminadoAux)
 
     def CrearAuto(self, marca, modelo, color, chapa, velMax):
         autoAux=Auto(marca, modelo, color, chapa, velMax)
@@ -115,6 +121,9 @@ class Cochera():
     def InfoAutoAgregado(self):
         messagebox.showinfo("Operacion realizada", "Auto agregado con exito")
 
+    def InfoAutoEliminado(self,autoelim):
+        messagebox.showinfo("Operacion realizada","Auto "+autoelim.numChapa+" marca "+autoelim.marca+" eliminado correctamente")
+
     def ConfirmacionVaciado(self):
         valor=messagebox.askquestion("Vaciar","Seguro desea vaiar todos los datos?")
         if valor=="yes":
@@ -136,13 +145,14 @@ class Cochera():
         del(archivo)
 
     def EliminarCoche(self,indice):
-        archivo=open("fileAutos","wb")
+        archivo=open("archivoAutos","wb")
         autoEliminado=self.listaAutos[indice]
         self.listaAutos.pop(indice)
         pickle.dump(self.listaAutos, archivo)
         print("Auto ",autoEliminado.numChapa," eliminado")
         archivo.close()
         del(archivo)
+        self.eliminadoAux=autoEliminado
 
 
 #######Ejecucion###############
@@ -168,7 +178,7 @@ botonMostrar.grid(row=2, column=0, pady=5)
 botonAdd=Button(miFrame, text="Agregar Auto", width=12, height=2, command=miGarage.MenuAgregarAuto)
 botonAdd.grid(row=3, column=0, pady=5)
 
-botonDel=Button(miFrame, text="Eliminar Auto", width=12, height=2)
+botonDel=Button(miFrame, text="Eliminar Auto", width=12, height=2, command=miGarage.EliminarSeleccionado)
 botonDel.grid(row=4, column=0, pady=5)
 
 botonClean=Button(miFrame, text="Limpiar Datos", width=12, height=2, command=miGarage.ConfirmacionVaciado)
